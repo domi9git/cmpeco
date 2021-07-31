@@ -1,0 +1,31 @@
+main: com.qeaml.plugins.cmpeco.MainPlug
+name: Economy
+version: 1.0
+description: Economy plugin for CMP.
+api-version: 1.17
+author: qeaml
+prefix: Eco
+
+permissions:
+  cmp.eco.bank:
+    description: Allows you to manage bank transfers.
+    default: false
+
+commands:
+  balance:
+    description: Shows your balance.
+    usage: "Usage: /balance"
+    aliases: [bal]
+  pay:
+    description: Allows you to pay someone close by from your wallet.
+    usage: "Usage: /pay <player> <amount>"
+  withdraw:
+    description: Withdraw some money from your bank account.
+    usage: "Usage: /withdraw <amount>"
+  deposit:
+    description: Deposit some money to your bank account.
+    usage: "Usage: /deposit <amount>"
+  transfer:
+    description: Execute a bank transfer.
+    permission: cmp.eco.bank
+    usage: "Usage: /transfer <from> <to> <amount>"

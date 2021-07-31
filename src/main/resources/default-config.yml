@@ -1,0 +1,11 @@
+# symbol used for the currency
+currency: "€"
+
+# money everyone gets the first time they log on
+starter-money: 500.0
+
+# maximum distance from which the /pay command will work
+pay-distance: 2.147
+
+# maximum amount that can be exchanged via /pay
+pay-threshold: 250.0
