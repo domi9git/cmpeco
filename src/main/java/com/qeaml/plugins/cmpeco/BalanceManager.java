@@ -93,18 +93,18 @@ public class BalanceManager {
         return res;
     }
 
-    public enum TransferResult {
+    public enum Transaction {
         OK, NOT_ENOUGH_BANK, NOT_ENOUGH_WALLET, UNSAFE, TOO_FAR
     }
 
-    public TransferResult deposit(Player player, double amt) {
-        log.info("Deposit: " + player.getName() + "$" + amt);
+    public Transaction withdraw(Player player, double amt) {
+        log.info("Withdraw: " + player.getName() + "$" + amt);
 
         var bank = getBankBal(player);
         var wallet = getWalletBal(player);
 
         if (bank < amt)
-            return TransferResult.NOT_ENOUGH_BANK;
+            return Transaction.NOT_ENOUGH_BANK;
 
         wallet += amt;
         bank -= amt;
@@ -113,17 +113,17 @@ public class BalanceManager {
         setWalletBal(player, wallet);
         save();
 
-        return TransferResult.OK;
+        return Transaction.OK;
     }
 
-    public TransferResult withdraw(Player player, double amt) {
-        log.info("Withdraw: " + player.getName() + "$" + amt);
+    public Transaction deposit(Player player, double amt) {
+        log.info("Deposit: " + player.getName() + "$" + amt);
 
         var bank = getBankBal(player);
         var wallet = getWalletBal(player);
 
         if (wallet < amt)
-            return TransferResult.NOT_ENOUGH_BANK;
+            return Transaction.NOT_ENOUGH_WALLET;
 
         wallet -= amt;
         bank += amt;
@@ -132,17 +132,17 @@ public class BalanceManager {
         setWalletBal(player, wallet);
         save();
 
-        return TransferResult.OK;
+        return Transaction.OK;
     }
 
-    public TransferResult transfer(Player from, Player to, double amt) {
+    public Transaction transfer(Player from, Player to, double amt) {
         log.info("Transfer: " + from.getName() + "->" + to.getName() + "$" + amt);
 
         var fromBank = getBankBal(from);
         var toBank = getBankBal(to);
 
         if (fromBank < amt)
-            return TransferResult.NOT_ENOUGH_BANK;
+            return Transaction.NOT_ENOUGH_BANK;
 
         fromBank -= amt;
         toBank += amt;
@@ -151,15 +151,15 @@ public class BalanceManager {
         setBankBal(to, toBank);
         save();
 
-        return TransferResult.OK;
+        return Transaction.OK;
     }
 
-    public TransferResult pay(Player from, Player to, double amt) {
+    public Transaction pay(Player from, Player to, double amt) {
         log.info("Pay: " + from.getName() + "->" + to.getName() + "$" + amt);
 
         var maximum = plug.config.getDouble("pay-threshold", Double.MAX_VALUE);
         if (amt > maximum)
-            return TransferResult.UNSAFE;
+            return Transaction.UNSAFE;
 
         var maxDist = plug.config.getDouble("pay-distance", Double.MAX_VALUE);
         var fromLoc = from.getLocation();
@@ -172,14 +172,14 @@ public class BalanceManager {
         var distance = Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
         if (distance > maxDist) {
             log.info("Too far.");
-            return TransferResult.TOO_FAR;
+            return Transaction.TOO_FAR;
         }
 
         var fromWallet = getWalletBal(from);
         var toWallet = getWalletBal(to);
 
         if (fromWallet < amt)
-            return TransferResult.NOT_ENOUGH_WALLET;
+            return Transaction.NOT_ENOUGH_WALLET;
 
         fromWallet -= amt;
         toWallet += amt;
@@ -188,6 +188,6 @@ public class BalanceManager {
         setWalletBal(to, toWallet);
         save();
 
-        return TransferResult.OK;
+        return Transaction.OK;
     }
 }

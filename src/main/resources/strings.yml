@@ -1,6 +1,9 @@
+langCodes:
+  en: english
+  pl: polish
+  lt: lithuanian
+
 test:
-  lang-name: "lang-name"
-  lang-chng: "lang-chng"
   bal-wllt: "bal-wllt %s"
   bal-bank: "bal-bank %s"
   pay-2far: "pay-2far"
@@ -8,10 +11,15 @@ test:
   pay-send: "pay-send %s %s %s"
   pay-recv: "pay-recv %s %s %s"
   pay-poor: "pay-poor"
+  pay-much: "pay-much"
+  trans-okok: "trans-okok %s %s %s"
+  trans-much: "trans-much"
+  dep-okok: "dep-okok %s"
+  dep-much: "dep-much"
+  with-okok: "with-okok %s"
+  with-much: "with-much"
 
 english:
-  lang-name: "English (US)"
-  lang-chng: "Your language has been changed."
   bal-wllt: "You have %s in your wallet."
   bal-bank: "You have %s stored in your bank account."
   pay-2far: "That player is too far away."
@@ -19,17 +27,29 @@ english:
   pay-send: "Payed %s to %s."
   pay-recv: "You have received %s from %s."
   pay-poor: "You don't have that much money in your wallet."
+  pay-much: "That is too much money to hand over like that."
+  dep-okok: "Deposited %s."
+  dep-much: "You don't have that much money in your wallet."
+  trans-okok: "Transfered %s from %s to %s."
+  trans-much: "Initiator doesn't have enough money on their bank account."
+  with-okok: "Withdrawn %s."
+  with-much: "You don't have that much money stored on your bank account."
 
 polish:
-  lang-name: "Polski"
-  lang-chng: "Język został zmienony."
+  player-not-found: "Nie znaleziono tego gracza."
   bal-wllt: "Masz %s w portfelu."
   bal-bank: "Masz %s na koncie w banku."
   pay-2far: "Ten gracz jest za daleko."
-  player-not-found: "Nie znaleziono tego gracza."
   pay-send: "Zapłacono %s graczowi %s."
   pay-recv: "Otrzymano %s od gracza %s."
   pay-poor: "Nie masz tyle pieniędzy w portfelu."
+  pay-much: "To za dużo pieniędzy, żeby je tak po prostu podać."
+  trans-okok: "Przeniesiono %s z konta %s na konto %s."
+  trans-much: "Inicjator nie ma tyle pieniędzy na koncie."
+  dep-okok: "Wpłacono %s."
+  dep-much: "Nie masz tyle pieniędzy w portfelu."
+  with-okok: "Wypłacono %s."
+  with-much: "Nie masz tyle pięniedzy na koncie w banku."
 
 lithuanian:
   lang-name: "Lietuvių"

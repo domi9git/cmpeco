@@ -59,6 +59,9 @@ public class PayCommand implements CommandExecutor {
                 from.sendMessage(ChatColor.RED + msg);
                 break;
 
+            case UNSAFE:
+                
+
             default:
                 break;
         }

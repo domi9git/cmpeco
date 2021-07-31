@@ -5,7 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import net.milkbowl.vault.permission.Permission;
 
 import com.qeaml.plugins.cmpeco.commands.*;
 
@@ -13,6 +16,7 @@ public class MainPlug extends JavaPlugin {
     public StringProvider strings;
     public BalanceManager balance;
     public YamlConfiguration config;
+    public Permission perms;
 
     @Override
     public void onEnable() {
@@ -22,8 +26,19 @@ public class MainPlug extends JavaPlugin {
         strings = new StringProvider(this);
         balance = new BalanceManager(this);
 
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        if (perms == null) {
+            getLogger().severe("Could not hook into permissions.");
+            getPluginLoader().disablePlugin(this);
+            return;
+        }
+
         getCommand("pay").setExecutor(new PayCommand(this));
         getCommand("balance").setExecutor(new BalanceCommand(this));
+        getCommand("transfer").setExecutor(new TransferCommand(this));
+        getCommand("deposit").setExecutor(new DepositCommand(this));
+        getCommand("withdraw").setExecutor(new WithdrawCommand(this));
     }
 
     @Override

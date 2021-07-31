@@ -7,7 +7,7 @@
   <!-- i don't actually own qeaml.com but don't tell anyone pls -->
   <groupId>com.qeaml.plugins</groupId>
   <artifactId>cmpeco</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 
   <name>cmpeco</name>
 
@@ -23,6 +23,10 @@
       <id>spigot</id>
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
+    <repository>
+        <id>jitpack</id>
+        <url>https://jitpack.io/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -32,6 +36,12 @@
       <version>1.17.1-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.MilkBowl</groupId>
+      <artifactId>VaultAPI</artifactId>
+      <version>1.7</version>
+      <scope>provided</scope>
+  </dependency>
   </dependencies>
 
   <build>

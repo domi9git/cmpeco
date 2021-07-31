@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.logging.Logger;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 public class StringProvider {
     private YamlConfiguration source;
+    private ConfigurationSection langCodes;
     private MainPlug plug;
     private Logger log;
     public String defLang; // default language
@@ -31,6 +33,7 @@ public class StringProvider {
             log.severe("Could not load strings: " + e.getLocalizedMessage());
             return;
         }
+        langCodes = source.getConfigurationSection("langCodes");
         log.info("Strings loaded");
     }
 
@@ -52,15 +55,11 @@ public class StringProvider {
     public String localeToLang(Player player) {
         var loc = player.getLocale();
         // log.info(player.getName() + " locale is " + loc);
-        // yes, this is hardcoded
-        // yes, hardcoding is bad
-        // yes, i will replace this with sth better
-        if (loc.startsWith("en"))
-            return "english";
-        if (loc.startsWith("pl"))
-            return "polish";
-        if (loc.startsWith("lt"))
-            return "lithuanian";
+        for (String code : langCodes.getKeys(false)) {
+            if (loc.toLowerCase().startsWith(code.toLowerCase())) {
+                return langCodes.getString(code);
+            }
+        }
         log.warning("Unrecognized player locale: " + loc);
         return defLang;
     }

@@ -1,6 +1,6 @@
 main: com.qeaml.plugins.cmpeco.MainPlug
 name: Economy
-version: 1.0
+version: 1.1
 description: Economy plugin for CMP.
 api-version: 1.17
 author: qeaml
