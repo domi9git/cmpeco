@@ -29,20 +29,28 @@ public class WithdrawCommand implements CommandExecutor {
         var player = (Player) sender;
         double amt;
         if (args[0].equalsIgnoreCase("all") || args[0] == "*")
-            amt = plug.balance.getWalletBal(player);
+            amt = plug.balance.getBankBal(player);
         else
             amt = Double.parseDouble(args[0]);
 
-        var res = plug.balance.withdraw(player, amt);
         String msg;
+        if (amt < 0.01) {
+            msg = plug.strings.getPlayerString("with-smol", player);
+            sender.sendMessage(ChatColor.RED + msg);
+            return true;
+        }
+
+        var sym = plug.config.getString("currency");
+        var res = plug.balance.withdraw(player, amt);
         switch (res) {
             case OK:
                 msg = plug.strings.getPlayerString("with-okok", player);
-                msg = String.format(msg, amt);
+                msg = String.format(msg, "" + amt + sym);
                 sender.sendMessage(ChatColor.GREEN + msg);
                 break;
             case NOT_ENOUGH_BANK:
-                msg = plug.strings.getPlayerString("with-much", player);
+                msg = plug.strings.getPlayerString("poor-bank", player);
+                msg = String.format(msg, "" + amt + sym);
                 sender.sendMessage(ChatColor.RED + msg);
                 break;
             default:

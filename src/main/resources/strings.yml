@@ -4,52 +4,73 @@ langCodes:
   lt: lithuanian
 
 test:
-  bal-wllt: "bal-wllt %s"
-  bal-bank: "bal-bank %s"
-  pay-2far: "pay-2far"
-  player-not-found: "player-not-found"
-  pay-send: "pay-send %s %s %s"
-  pay-recv: "pay-recv %s %s %s"
-  pay-poor: "pay-poor"
-  pay-much: "pay-much"
-  trans-okok: "trans-okok %s %s %s"
-  trans-much: "trans-much"
-  dep-okok: "dep-okok %s"
-  dep-much: "dep-much"
-  with-okok: "with-okok %s"
-  with-much: "with-much"
+  # general
+  player-not-found: "player not found"
+  invalid-amt: "invalid amount"
+  poor-wllt: "poor wllt %s"
+  poor-bank: "poor bank %s"
+  no-perms: "no perms"
+  # balance
+  bal-wllt: "bal wllt %s"
+  bal-bank: "bal bank %s"
+  # pay
+  pay-2far: "pay 2far"
+  pay-send: "pay send %s %s"
+  pay-recv: "pay recv %s %s"
+  pay-much: "pay much"
+  # deposit
+  dep-okok: "dep okok %s"
+  # withdraw
+  with-okok: "with okok %s"
+  # transfer
+  trans-okok: "trans okok %s %s %s"
+  trans-much: "trans much"
 
 english:
+  # general
+  player-not-found: "Could not find that player."
+  invalid-amt: "Invalid amount."
+  poor-wllt: "You don't have %s in your wallet."
+  poor-bank: "You don't have %s stored on your bank account."
+  no-perms: "You don't have access to this command."
+  # balance
   bal-wllt: "You have %s in your wallet."
   bal-bank: "You have %s stored in your bank account."
+  # pay
   pay-2far: "That player is too far away."
-  player-not-found: "Could not find that player."
   pay-send: "Payed %s to %s."
   pay-recv: "You have received %s from %s."
-  pay-poor: "You don't have that much money in your wallet."
   pay-much: "That is too much money to hand over like that."
+  # deposit
   dep-okok: "Deposited %s."
-  dep-much: "You don't have that much money in your wallet."
+  # withdraw
+  with-okok: "Withdrawn %s."
+  # transfer
   trans-okok: "Transfered %s from %s to %s."
   trans-much: "Initiator doesn't have enough money on their bank account."
-  with-okok: "Withdrawn %s."
-  with-much: "You don't have that much money stored on your bank account."
 
 polish:
-  player-not-found: "Nie znaleziono tego gracza."
+  # general
+  player-not-found: "Nie znaleziono gracza."
+  invalid-amt: "Niepoprawna ilość."
+  poor-wllt: "Nie masz %s w portfelu."
+  poor-bank: "Nie masz %s na koncie w banku."
+  no-perms: "Nie masz dostępu do tej komendy."
+  # balance
   bal-wllt: "Masz %s w portfelu."
   bal-bank: "Masz %s na koncie w banku."
+  # pay
   pay-2far: "Ten gracz jest za daleko."
-  pay-send: "Zapłacono %s graczowi %s."
+  pay-send: "Podano %s graczowi %s."
   pay-recv: "Otrzymano %s od gracza %s."
-  pay-poor: "Nie masz tyle pieniędzy w portfelu."
-  pay-much: "To za dużo pieniędzy, żeby je tak po prostu podać."
-  trans-okok: "Przeniesiono %s z konta %s na konto %s."
-  trans-much: "Inicjator nie ma tyle pieniędzy na koncie."
+  pay-much: "Jak możesz tyle pieniędzy tak po prostu podawać?"
+  # deposit
   dep-okok: "Wpłacono %s."
-  dep-much: "Nie masz tyle pieniędzy w portfelu."
+  # withdraw
   with-okok: "Wypłacono %s."
-  with-much: "Nie masz tyle pięniedzy na koncie w banku."
+  # transfer
+  trans-okok: "Przeniesiono %s z konta gracza %s na konto gracza %s."
+  trans-much: "Inicjator nie ma tyle pieniędzy na swoim koncie."
 
 lithuanian:
   lang-name: "Lietuvių"

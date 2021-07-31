@@ -18,7 +18,8 @@ public class StringProvider {
     public StringProvider(MainPlug plug) {
         this.plug = plug;
         this.log = plug.getLogger();
-        this.defLang = "english";
+        this.defLang = plug.config.getString("lang", "test");
+        this.log.info("Default language is " + this.defLang);
         load();
     }
 

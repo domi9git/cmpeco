@@ -1,3 +1,6 @@
+# default language in case the user's language isn't supported
+lang: "english"
+
 # symbol used for the currency
 currency: "€"
 

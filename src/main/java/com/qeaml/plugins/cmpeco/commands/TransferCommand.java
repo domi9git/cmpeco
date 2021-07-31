@@ -5,6 +5,7 @@ import com.qeaml.plugins.cmpeco.MainPlug;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -18,7 +19,12 @@ public class TransferCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!plug.perms.has(sender, "cmp.eco.bank")) {
-            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+            String msg;
+            if (sender instanceof Player)
+                msg = plug.strings.getPlayerString("no-perms", (Player) sender);
+            else
+                msg = "You do not have permission to use this command.";
+            sender.sendMessage(ChatColor.RED + msg);
             return true;
         }
 

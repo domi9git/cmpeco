@@ -29,20 +29,28 @@ public class DepositCommand implements CommandExecutor {
         var player = (Player) sender;
         double amt;
         if (args[0].equalsIgnoreCase("all") || args[0] == "*")
-            amt = plug.balance.getBankBal(player);
+            amt = plug.balance.getWalletBal(player);
         else
             amt = Double.parseDouble(args[0]);
 
-        var res = plug.balance.deposit(player, amt);
         String msg;
+        if (amt < 0.01) {
+            msg = plug.strings.getPlayerString("invalid-amt", player);
+            sender.sendMessage(ChatColor.RED + msg);
+            return true;
+        }
+
+        var sym = plug.config.getString("currency");
+        var res = plug.balance.deposit(player, amt);
         switch (res) {
             case OK:
                 msg = plug.strings.getPlayerString("dep-okok", player);
-                msg = String.format(msg, amt);
+                msg = String.format(msg, "" + amt + sym);
                 sender.sendMessage(ChatColor.GREEN + msg);
                 break;
             case NOT_ENOUGH_WALLET:
-                msg = plug.strings.getPlayerString("dep-much", player);
+                msg = plug.strings.getPlayerString("poor-wllt", player);
+                msg = String.format(msg, "" + amt + sym);
                 sender.sendMessage(ChatColor.RED + msg);
                 break;
             default:

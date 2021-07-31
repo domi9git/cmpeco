@@ -26,8 +26,15 @@ public class PayCommand implements CommandExecutor {
         if (args.length != 2)
             return false;
 
+        var player = (Player) sender;
+        var amt = Double.parseDouble(args[1]);
         String msg;
-        var from = (Player) sender;
+        if (amt < 0.01) {
+            msg = plug.strings.getPlayerString("pay-smol", player);
+            sender.sendMessage(ChatColor.RED + msg);
+        }
+
+        var from = player;
         var to = sender.getServer().getPlayer(args[0]);
         if (to == null) {
             msg = plug.strings.getPlayerString("player-not-found", from);
@@ -36,7 +43,6 @@ public class PayCommand implements CommandExecutor {
         }
 
         var sym = plug.config.getString("currency");
-        var amt = Double.parseDouble(args[1]);
         var res = plug.balance.pay(from, to, amt);
         switch (res) {
             case OK:
@@ -50,7 +56,7 @@ public class PayCommand implements CommandExecutor {
                 break;
 
             case NOT_ENOUGH_WALLET:
-                msg = plug.strings.getPlayerString("pay-poor", from);
+                msg = plug.strings.getPlayerString("poor-wllt", from);
                 from.sendMessage(ChatColor.RED + msg);
                 break;
 
@@ -60,7 +66,6 @@ public class PayCommand implements CommandExecutor {
                 break;
 
             case UNSAFE:
-                
 
             default:
                 break;
