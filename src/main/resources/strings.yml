@@ -73,17 +73,24 @@ polish:
   trans-much: "Inicjator nie ma tyle pieniędzy na swoim koncie."
 
 lithuanian:
+  # general
+  player-not-found: "Nepavyko rasti šio žaidėjo."
+  invalid-amt: "Netinkama suma."
+  poor-wllt: "Piniginėje neturite %s."
+  poor-bank: "Jūsų banko sąskaitoje nėra %s."
+  no-perms: "Jūs neturite prieigos prie šios komandos."
+  # balance
   bal-wllt: "Piniginėje turite %s."
   bal-bank: "Banko sąskaitoje turite %s."
+  # pay
   pay-2far: "Šis žaidėjas yra per toli."
-  player-not-found: "Nepavyko rasti šio žaidėjo."
   pay-send: "Sumokėta %s į %s."
   pay-recv: "Gavote %s iš %s."
-  pay-poor: "Piniginėje neturite tiek daug pinigų."
   pay-much: "Tai per daug pinigų, kad juos taip atiduotumėte."
+  # deposit
   dep-okok: "Deponuota %s."
-  dep-much: "Piniginėje neturite tiek daug pinigų."
+  # withdraw
+  with-okok: "Atsisakyta %s."
+  # transfer
   trans-okok: "Perkelta %s iš %s į %s."
   trans-much: "Iniciatorius neturi pakankamai pinigų savo banko sąskaitoje."
-  with-okok: "Atsisakyta %s."
-  with-much: "Savo banko sąskaitoje neturite tiek daug pinigų."
